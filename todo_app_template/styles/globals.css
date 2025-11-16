@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base light mode only */
+html {
+  @apply bg-gray-50 text-gray-900;
+}
+
+/* Smooth UI transitions */
+* {
+  @apply transition-colors duration-200;
+}
+
+/* Card (white only) */
+@layer components {
+  .card {
+    @apply rounded-2xl shadow p-4 bg-white;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium;
+  }
+
+  .btn-primary {
+    @apply btn bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800;
+  }
+
+  .btn-outline {
+    @apply btn border border-gray-300 hover:bg-gray-100 active:bg-gray-200;
+  }
+
+  .btn-ghost {
+    @apply btn hover:bg-gray-100;
+  }
+
+  .input, .textarea, .select {
+    @apply w-full bg-white text-gray-900 
+           border border-gray-300 rounded-md
+           px-3 py-2 text-sm
+           placeholder:text-gray-400
+           outline-none shadow-none
+           focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+  }
+}
