@@ -1,5 +1,5 @@
 // lib/jwt.ts
-import jwt, { Secret } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 if (!process.env.JWT_SECRET) {
   throw new Error("JWT_SECRET is missing in .env");
@@ -12,8 +12,8 @@ const SECRET = process.env.JWT_SECRET as string;
  * payload can include userId or anything else you want
  */
 export function signJWT(payload: object, expiresIn: string | number = "7d") {
-  const opts = { expiresIn: expiresIn as unknown as string } ;
-  return jwt.sign(payload as any, SECRET as Secret, opts as any);
+  const opts = { expiresIn } as any;
+  return (jwt as any).sign(payload, SECRET as any, opts);
 }
 
 /**
@@ -22,7 +22,7 @@ export function signJWT(payload: object, expiresIn: string | number = "7d") {
  */
 export function verifyJWT(token: string): any | null {
   try {
-    return jwt.verify(token, SECRET as Secret);
+    return (jwt as any).verify(token, SECRET as any);
   } catch (err) {
     return null;
   }
@@ -33,7 +33,7 @@ export function verifyJWT(token: string): any | null {
  */
 export function decodeJWT(token: string): any | null {
   try {
-    return jwt.decode(token);
+    return (jwt as any).decode(token);
   } catch {
     return null;
   }
