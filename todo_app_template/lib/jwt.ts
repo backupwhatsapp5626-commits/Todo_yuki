@@ -13,7 +13,7 @@ const SECRET = process.env.JWT_SECRET as string;
  */
 export function signJWT(payload: object, expiresIn: string | number = "7d") {
   const opts = { expiresIn } as any;
-  return (jwt as any).sign(payload, SECRET, opts);
+  return (jwt as any).sign(payload as any, SECRET as any, opts);
 }
 
 /**
