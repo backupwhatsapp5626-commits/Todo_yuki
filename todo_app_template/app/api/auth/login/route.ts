@@ -49,7 +49,6 @@ export async function POST(req: Request) {
       httpOnly: true,
       secure: true, // use true for HTTPS in production
       path: "/",
-      samesite: "lax",
       maxAge: 60 * 60 * 24 * 7,
     });
 
