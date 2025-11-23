@@ -1,9 +1,12 @@
 // app/api/auth/login/route.ts
+export const runtime= "nodejs";
+
 import { prisma } from "@/lib/db";
 import { NextResponse } from "next/server";
-import bcrypt from "bcryptjs";
+import * as bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
+import { signJWT } from "@/lib/jwt";
 
 export async function POST(req: Request) {
   try {
@@ -24,7 +27,7 @@ export async function POST(req: Request) {
     if (!user || !user.password) {
       return NextResponse.json(
         { error: "Invalid credentials" },
-        { status: 400 }
+        { status: 401 }
       );
     }
 
@@ -33,7 +36,7 @@ export async function POST(req: Request) {
     if (!valid) {
       return NextResponse.json(
         { error: "Invalid credentials" },
-        { status: 400 }
+        { status: 401 }
       );
     }
 
