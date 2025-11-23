@@ -33,8 +33,8 @@ export default function LoginEmail() {
       setError(data?.error || "Something went wrong");
       return;
     }
-    await new promise(r=> setTimeout(r, 150))
-    // Success → redirect
+    await new Promise(r=> setTimeout(r, 150))
+    // SuccesP → redirect
     router.push("/dashboard");
   }
 
