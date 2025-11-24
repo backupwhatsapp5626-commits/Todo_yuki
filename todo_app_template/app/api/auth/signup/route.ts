@@ -53,7 +53,7 @@ export async function POST(req: Request) {
     // Set cookie
     cookies().set("session", token, {
       httpOnly: true,
-      secure: false, // change to true in production (https)
+      secure: process.env.NODE_ENV === 'production', // change to true in production (https)
       path: "/",
       sameSite: "lax",
       maxAge: 60 * 60 * 24 * 7, // 7 days
