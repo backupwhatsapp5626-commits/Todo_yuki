@@ -6,8 +6,9 @@ export async function POST() {
     // Remove the session cookie
     cookies().set("session", "", {
       httpOnly: true,
-      secure: false, // set to true in production
+      secure: process.env.NODE_ENV === 'production', // set to true in production
       path: "/",
+      sameSite='lax',
       maxAge: 0,     // expire immediately
     });
 
